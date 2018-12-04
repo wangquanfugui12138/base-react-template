@@ -1,3 +1,4 @@
+/*上传build文件夹下所有文件 包括static文件夹下所有文件*/
 const fs = require('fs')
 const path = require('path')
 const gulp = require('gulp')
