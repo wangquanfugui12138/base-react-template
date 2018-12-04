@@ -4,8 +4,8 @@ const gulp = require('gulp')
 const sftp = require('gulp-sftp')
 const objectAssign = require('object-assign')
 
-const remoteDir = '/aliyun/static/assets/xxx',
-  remoteStaticDir = '/aliyun/static/assets/xxx/static'
+const remoteDir = '/aliyun/xxx',
+  remoteStaticDir = '/aliyun/xxx/static'
 const remoteConf = [
   {
     host: 'xxx.xxx.xxx.001',

@@ -22,7 +22,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -181,13 +181,13 @@ module.exports = {
           parser: safePostCssParser,
           map: shouldUseSourceMap
             ? {
-                // `inline: false` forces the sourcemap to be output into a
-                // separate file
-                inline: false,
-                // `annotation: true` appends the sourceMappingURL to the end of
-                // the css file, helping the browser find the sourcemap
-                annotation: true,
-              }
+              // `inline: false` forces the sourcemap to be output into a
+              // separate file
+              inline: false,
+              // `annotation: true` appends the sourceMappingURL to the end of
+              // the css file, helping the browser find the sourcemap
+              annotation: true,
+            }
             : false,
         },
       }),
@@ -201,7 +201,7 @@ module.exports = {
           priority: 10,
           chunks: 'initial'
         },
-        styles: {            
+        styles: {
           name: 'styles',
           test: /\.scss|css$/,
           chunks: 'all',    // 将所有css打包成一个文件
@@ -276,18 +276,33 @@ module.exports = {
             options: {
               formatter: require.resolve('react-dev-utils/eslintFormatter'),
               eslintPath: require.resolve('eslint'),
-              
+
             },
             loader: require.resolve('eslint-loader'),
           },
         ],
         include: paths.appSrc,
       },
+      
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
+          {
+            test: /\.less$/,
+            use: [
+              "style-loader",
+              "css-loader",
+              {
+                loader: "less-loader",
+                options: {
+                  modifyVars: { "@primary-color": "#24BA8A" },
+                  javascriptEnabled: true,
+                }
+              }
+            ]
+          },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
           {
@@ -309,7 +324,6 @@ module.exports = {
               customize: require.resolve(
                 'babel-preset-react-app/webpack-overrides'
               ),
-              
               plugins: [
                 [
                   require.resolve('babel-plugin-named-asset-import'),
@@ -347,7 +361,7 @@ module.exports = {
               cacheDirectory: true,
               // Save disk space when time isn't as important
               cacheCompression: true,
-              
+
               // If an error happens in a package, it's possible to be
               // because it was compiled. Thus, we don't want the browser
               // debugger to show the original code. Instead, the code
@@ -442,11 +456,11 @@ module.exports = {
   },
   plugins: [
     new webpack.DllReferencePlugin({
-      manifest: require(path.resolve(__dirname, '..','public','vendor-manifest.json')),
+      manifest: require(path.resolve(__dirname, '..', 'public', 'vendor-manifest.json')),
       context: __dirname,
     }),
     new ProgressBarPlugin(),
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
@@ -465,7 +479,7 @@ module.exports = {
       },
     }),
     shouldInlineRuntimeChunk &&
-      new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
+    new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     new ModuleNotFoundPlugin(paths.appPath),
     new webpack.DefinePlugin(env.stringified),
@@ -490,33 +504,33 @@ module.exports = {
     }),
     // TypeScript type checking
     fs.existsSync(paths.appTsConfig) &&
-      new ForkTsCheckerWebpackPlugin({
-        typescript: resolve.sync('typescript', {
-          basedir: paths.appNodeModules,
-        }),
-        async: false,
-        checkSyntacticErrors: true,
-        tsconfig: paths.appTsConfig,
-        compilerOptions: {
-          module: 'esnext',
-          moduleResolution: 'node',
-          resolveJsonModule: true,
-          isolatedModules: true,
-          noEmit: true,
-          jsx: 'preserve',
-        },
-        reportFiles: [
-          '**',
-          '!**/*.json',
-          '!**/__tests__/**',
-          '!**/?(*.)(spec|test).*',
-          '!src/setupProxy.js',
-          '!src/setupTests.*',
-        ],
-        watch: paths.appSrc,
-        silent: true,
-        formatter: typescriptFormatter,
+    new ForkTsCheckerWebpackPlugin({
+      typescript: resolve.sync('typescript', {
+        basedir: paths.appNodeModules,
       }),
+      async: false,
+      checkSyntacticErrors: true,
+      tsconfig: paths.appTsConfig,
+      compilerOptions: {
+        module: 'esnext',
+        moduleResolution: 'node',
+        resolveJsonModule: true,
+        isolatedModules: true,
+        noEmit: true,
+        jsx: 'preserve',
+      },
+      reportFiles: [
+        '**',
+        '!**/*.json',
+        '!**/__tests__/**',
+        '!**/?(*.)(spec|test).*',
+        '!src/setupProxy.js',
+        '!src/setupTests.*',
+      ],
+      watch: paths.appSrc,
+      silent: true,
+      formatter: typescriptFormatter,
+    }),
   ].filter(Boolean),
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
