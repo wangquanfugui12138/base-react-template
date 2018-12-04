@@ -1,12 +1,13 @@
 # base-react-template
+`本项目用于方便开发,所用第三方库都为当前(2018-12-04)新特性版本，详细可查看package.json`
 
 ## 技术栈
-- [x] react
-- [x] axios
-- [x] react-router
-- [x] antd
-- [x] babel
-- [x] webpack4
+- [x] react 16.6+
+- [x] axios 0.18+
+- [x] react-router-dom 4+
+- [x] Antd 3.11+
+- [x] Babel 7+
+- [x] Webpack 4+
 
 ## 包含内容
 - [x] 登录、400等路由页面
