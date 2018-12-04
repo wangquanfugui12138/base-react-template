@@ -2,13 +2,19 @@ import React from 'react'
 import {
   Form, Icon, Input, Button, Checkbox,
 } from 'antd'
+import PropTypes from "prop-types"
 
 const FormItem = Form.Item
 class Login extends React.Component {
+  static propTypes = {
+    history: PropTypes.object
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        values.userName === 'admin' && values.password === '123' && this.props.history.push('/')
         console.log('Received values of form: ', values)
       }
     })
@@ -18,7 +24,7 @@ class Login extends React.Component {
     const { getFieldDecorator } = this.props.form
 
     return (
-      <div className='wrapper' style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
+      <div style={{position: 'absolute',width: '100%',height: '100%',top: 0,background:'#fff',display:'flex',justifyContent:'center',alignItems:'center'}}>
         <Form onSubmit={this.handleSubmit} style={{maxWidth:'300px',padding:20,boxShadow:'0 0 3px 3px silver'}} >
           <FormItem>
             {getFieldDecorator('userName', {

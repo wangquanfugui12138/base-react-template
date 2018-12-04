@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu } from 'antd'
 import { Link,withRouter } from 'react-router-dom'
+import PropTypes from "prop-types"
 
 const routerConfig = [
   {
@@ -12,6 +13,9 @@ const routerConfig = [
   },
 ]
 class Nav extends Component {
+  static propTypes = {
+    history: PropTypes.object
+  }
   constructor() {
     super()
     this.state = {

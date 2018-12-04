@@ -1,0 +1,10 @@
+.test1{
+    position: relative;
+    top: 1;
+    left: 1;
+}
+.test2{
+    position: absolute;
+    top: 2;
+    left: 2;
+}
