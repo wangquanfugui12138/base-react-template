@@ -6,19 +6,19 @@ const MyLoadingComponent = ({ isLoading, error }) => {
   return ''
 }
 const Nav = Loadable({
-  loader: () => import('../components/Nav'),
+  loader: () => import(/* webpackChunkName: "Nav" */'../components/Nav'),
   loading: MyLoadingComponent
 })
 const Login = Loadable({
-  loader: () => import('../pages/Login'),
+  loader: () => import(/* webpackChunkName: "Login" */'../pages/Login'),
   loading: MyLoadingComponent
 })
 const Index = Loadable({
-  loader: () => import('../pages/Index'),
+  loader: () => import(/* webpackChunkName: "Index" */'../pages/Index'),
   loading: MyLoadingComponent
 })
 const Contact = Loadable({
-  loader: () => import('../pages/Contact'),
+  loader: () => import(/* webpackChunkName: "Contact" */ '../pages/Contact'),
   loading: MyLoadingComponent
 })
 const NotFound = Loadable({

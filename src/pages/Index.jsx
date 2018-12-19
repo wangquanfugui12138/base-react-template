@@ -26,9 +26,7 @@ const dataSource = [{
   address: '西湖区湖底公园1号'
 }];
 class Index extends Component {
-  
   render() {
-    
     return (
       <div className="wrapper">
         <Button type='primary'>test</Button>

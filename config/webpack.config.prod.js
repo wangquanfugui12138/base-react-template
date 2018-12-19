@@ -201,19 +201,19 @@ module.exports = {
           priority: 10,
           chunks: 'initial'
         },
-        styles: {
-          name: 'styles',
-          test: /\.scss|css$/,
-          chunks: 'all',    // 将所有css打包成一个文件
-          enforce: true
-        },
-        // 打包node_modules中的文件
-        vendor: {
-          name: "modules_vendor",
-          test: /[\\/]node_modules[\\/]/,
-          chunks: "all",
-          priority: 10
-        }
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.scss|css$/,
+        //   chunks: 'all',    // 将所有css打包成一个文件
+        //   enforce: true
+        // },
+        // // 打包node_modules中的文件
+        // vendor: {
+        //   name: "modules_vendor",
+        //   test: /[\\/]node_modules[\\/]/,
+        //   chunks: "all",
+        //   priority: 10
+        // }
       },
     },
     runtimeChunk: true,
