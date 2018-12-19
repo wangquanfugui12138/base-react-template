@@ -206,7 +206,10 @@ module.exports = {
               {
                 loader: "less-loader",
                 options: {
-                  modifyVars: { "@primary-color": "#24BA8A" },
+                  modifyVars: { 
+                    "@primary-color": "#24BA8A" ,                        // 全局主色
+                    "@font-size-base": "14px",                          // 主字号
+                  },
                   javascriptEnabled: true,
                 }
               }
@@ -407,4 +410,5 @@ module.exports = {
   // Turn off performance processing because we utilize
   // our own hints via the FileSizeReporter
   performance: false,
+
 }

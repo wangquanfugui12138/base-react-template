@@ -297,7 +297,10 @@ module.exports = {
               {
                 loader: "less-loader",
                 options: {
-                  modifyVars: { "@primary-color": "#24BA8A" },
+                  modifyVars: { 
+                    "@primary-color": "#24BA8A",
+                    "@font-size-base": "14px" 
+                  },
                   javascriptEnabled: true,
                 }
               }
