@@ -22,6 +22,8 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin-alt')
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 const ProgressBarPlugin = require('progress-bar-webpack-plugin')
+const HappyPack = require('happypack')
+
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -486,6 +488,11 @@ module.exports = {
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     new ModuleNotFoundPlugin(paths.appPath),
     new webpack.DefinePlugin(env.stringified),
+    new HappyPack({
+      id: 'jsx',
+      threads: 4,
+      loaders: ['babel-loader?presets[]=react,presets[]=latest&compact=false'],
+    }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
