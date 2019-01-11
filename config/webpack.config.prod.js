@@ -239,8 +239,7 @@ module.exports = {
       .map(ext => `.${ext}`)
       .filter(ext => useTypeScript || !ext.includes('ts')),
     alias: {
-      // Support React Native Web
-      // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
+      '@':paths.appSrc,
       'react-native': 'react-native-web',
     },
     plugins: [

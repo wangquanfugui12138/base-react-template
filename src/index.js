@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Routers from './router/router';
 
 import 'antd/dist/antd.less'
-import './assets/css/base.css'
+import '@/assets/css/base.css'
 import './httpConfig'
 
 ReactDOM.render(<Routers/>, document.getElementById('root'));
