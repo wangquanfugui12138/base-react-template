@@ -147,7 +147,7 @@ module.exports = {
       .map(ext => `.${ext}`)
       .filter(ext => useTypeScript || !ext.includes('ts')),
     alias: {
-      '@':resolve('src'),
+      '@':paths.appSrc,
       'react-native': 'react-native-web',
     },
     plugins: [
