@@ -82,27 +82,25 @@ for (var i = 0; i < 20; i++) {
 const topK = function (data, k) {
   var min = Math.min(...data.map(item => item.age))
   var max = Math.max(...data.map(item => item.age))
-  var buckets = Array(max - min + 1).fill(0)
-  var arr = Array(max - min + 1).fill(0).map(() => [])
+  var buckets = Array(max - min + 1).fill(0).map(() => [])
   var res = []
 
   data.forEach(item => {
-    arr[item.age - min].push(item)
-    buckets[item.age - min]++
+    buckets[item.age - min].push(item)
   })
 
   var tmp = 0
   var par = 0
-  console.log(arr)
+  console.log(buckets)
   for (var i = buckets.length - 1; i >= 0; i--) {
-    tmp += buckets[i]
+    tmp += buckets[i].length
 
     if (tmp >= k) {
-      res.push(...arr[i].slice(0, k - par))
+      res.push(...buckets[i].slice(0, k - par))
       return res
     } else {
       par = tmp
-      res.push(...arr[i])
+      res.push(...buckets[i])
     }
   }
   return res
