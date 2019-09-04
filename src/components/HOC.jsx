@@ -17,14 +17,14 @@ const HOC = WrappedComponent =>
       })
       store.dispatch(foo({ active: !this.state.active }))
     }
-    static getDerivedStateFromProps(nextProp, nextState) {
+    static getDerivedStateFromProps (nextProp, nextState) {
       // console.log(nextProp, nextState)
       return null
     }
-    componentDidMount() {
+    componentDidMount () {
       // console.log(this, this.props)
     }
-    render() {
+    render () {
       return (
         <div
           style={this.state.active ? active : noActive}

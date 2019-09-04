@@ -13,7 +13,7 @@ class Contact extends Component {
     }
   }
   // 纯函数，无副作用
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps (nextProps, prevState) {
     // console.log(nextProps, prevState)
     if (nextProps.name && nextProps.name !== prevState.name) {
       return {
@@ -27,17 +27,17 @@ class Contact extends Component {
     return null
   }
 
-  render() {
+  render () {
     // console.log('render')
     return <div style={{ height: 500 }}>{this.state.list}</div>
   }
   // 看是否需要初始化的时候调用
-  componentDidMount() {}
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState)
+  componentDidMount () { }
+  shouldComponentUpdate (nextProps, nextState) {
+    // console.log(nextProps, nextState)
     return nextProps.name !== nextState.name
   }
-  getSnapshotBeforeUpdate(prevProps, prevState) {
+  getSnapshotBeforeUpdate (prevProps, prevState) {
     // console.log(prevProps, prevState)
     return {
       name: 'getSnapshotBeforeUpdate',
@@ -46,7 +46,7 @@ class Contact extends Component {
     // console.log('getSnapshotBeforeUpdate')
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate (prevProps, prevState, snapshot) {
     // console.log(prevProps, prevState, snapshot)
     // console.log('componentDidUpdate')
   }

@@ -124,7 +124,6 @@ class Index extends Component {
 
     var data = await axios.get('https://www.easy-mock.com/mock/5b6028d756ef2c3fc9c71e82/example/mock')
     var data1 = await axios.get('https://www.easy-mock.com/mock/5b6028d756ef2c3fc9c71e82/example/mock')
-    console.log(data, data1)
   }
   change = (selectedRowKeys, selectedRows) => {
     this.setState({ selectedRows, selectedRowKeys })
